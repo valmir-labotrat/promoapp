@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Promo App — Goiânia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      
+      --bg:       #2A2A2A;
+      --bg2:      #1E1E1E;
+      --bg3:      #161616;
+      --ink:      #F0F0F0;
+      --ink2:     #B0B0B0;
+      --ink3:     #707070;
+      --orange:   #FF5C00;
+      --orange2:  #FF7A2B;
+      --orange-light: rgba(255,92,0,.15);
+      --border:   rgba(255,255,255,.08);
+      --radius:   18px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 3rem;
+      background: rgba(10,7,4,.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-weight: 900; font-size: 1.25rem; letter-spacing: -.02em; color: var(--ink); text-decoration: none; }
+    .nav-logo span { color: var(--orange); }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: .85rem; font-weight: 600; color: var(--ink3); text-decoration: none; transition: color .2s; }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-cta {
+      background: var(--orange) !important; color: #fff !important;
+      padding: .6rem 1.4rem; border-radius: 100px;
+      font-size: .85rem; font-weight: 800 !important; text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .nav-cta:hover { background: var(--orange2) !important; transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4rem;
+      padding: 8rem 3rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--orange-light); border: 1px solid rgba(255,92,0,.2);
+      border-radius: 100px; padding: .4rem 1rem;
+      font-size: .78rem; font-weight: 700; color: var(--orange);
+      margin-bottom: 1.8rem; letter-spacing: .04em; text-transform: uppercase;
+    }
+    .hero-tag .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--orange); animation: pulse 2s infinite;
+    }
+
+    .hero-h1 {
+      font-weight: 900; font-size: clamp(2.6rem, 4.5vw, 4rem);
+      line-height: 1.05; letter-spacing: -.035em; margin-bottom: 1.4rem;
+    }
+    .hero-h1 em { font-style: normal; color: var(--orange); }
+
+    .hero-p {
+      font-size: 1.1rem; font-weight: 500; color: var(--ink2);
+      line-height: 1.75; max-width: 480px; margin-bottom: 2.5rem;
+    }
+
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+
+    .btn-orange {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--orange); color: #fff; font-weight: 800; font-size: .95rem;
+      padding: .95rem 2rem; border-radius: 100px; text-decoration: none;
+      box-shadow: 0 8px 24px rgba(255,92,0,.3);
+      transition: background .2s, transform .15s, box-shadow .15s;
+    }
+    .btn-orange:hover { background: var(--orange2); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(255,92,0,.4); }
+
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: transparent; color: var(--ink); font-weight: 700; font-size: .95rem;
+      padding: .95rem 2rem; border-radius: 100px; border: 1.5px solid var(--border);
+      text-decoration: none; transition: border-color .2s, transform .15s;
+    }
+    .btn-outline:hover { border-color: var(--ink); transform: translateY(-2px); }
+
+    /* HERO SOCIAL PROOF */
+    .hero-social {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .avatars { display: flex; }
+    .avatars img {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 2px solid #fff; margin-left: -10px; object-fit: cover;
+    }
+    .avatars img:first-child { margin-left: 0; }
+    .social-text { font-size: .82rem; font-weight: 600; color: var(--ink2); }
+    .social-text strong { color: var(--ink); }
+
+    /* HERO PHOTOS */
+    .hero-right {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 1rem;
+      position: relative;
+    }
+
+    .hphoto {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+    .hphoto:nth-child(1) { grid-row: 1; aspect-ratio: 4/5; }
+    .hphoto:nth-child(2) { grid-row: 1 / span 2; margin-top: 2.5rem; aspect-ratio: 3/5; }
+    .hphoto:nth-child(3) { grid-row: 2; aspect-ratio: 4/3; }
+
+    .hphoto img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .4s;
+    }
+    .hphoto:hover img { transform: scale(1.04); }
+
+    .hphoto .chip {
+      position: absolute; bottom: .9rem; left: .9rem; right: .9rem;
+      background: rgba(30,30,30,.92);
+      backdrop-filter: blur(8px);
+      border-radius: 100px;
+      padding: .35rem .85rem;
+      font-size: .72rem; font-weight: 800; color: #fff;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,.3);
+    }
+    .hphoto .chip span { color: var(--orange); }
+
+    /* STATS */
+    .stats-bar {
+      background: rgba(0,0,0,.5); padding: 2.8rem 3rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .stats-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 2rem; text-align: center;
+    }
+    .stat-val {
+      font-weight: 900; font-size: 2.2rem; color: var(--orange);
+      letter-spacing: -.03em; line-height: 1; margin-bottom: .4rem;
+    }
+    .stat-label { font-size: .88rem; font-weight: 600; color: rgba(255,255,255,.55); line-height: 1.4; }
+
+    /* SECTIONS */
+    .section { max-width: 1100px; margin: 0 auto; padding: 7rem 2rem; }
+
+    .eyebrow {
+      font-size: .72rem; font-weight: 800; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--orange); margin-bottom: .9rem;
+    }
+    .section-h2 {
+      font-weight: 900; font-size: clamp(2rem, 3.5vw, 3rem);
+      letter-spacing: -.03em; line-height: 1.08; margin-bottom: 1.2rem; max-width: 620px;
+    }
+    .section-p {
+      font-size: 1.05rem; font-weight: 500; color: var(--ink2);
+      line-height: 1.75; max-width: 540px; margin-bottom: 3.5rem;
+    }
+
+    /* STEPS */
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+    }
+    .step-card {
+      background: rgba(255,255,255,.04); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2rem 1.6rem;
+      transition: box-shadow .25s, transform .25s, border-color .25s;
+    }
+    .step-card:hover {
+      box-shadow: 0 16px 40px rgba(255,92,0,.1);
+      transform: translateY(-5px); border-color: rgba(255,92,0,.25);
+    }
+    .step-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--orange-light); color: var(--orange);
+      font-weight: 900; font-size: .82rem;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(255,92,0,.3);
+    }
+    .step-icon { font-size: 1.8rem; margin-bottom: .8rem; }
+    .step-card h3 { font-weight: 800; font-size: 1rem; margin-bottom: .6rem; }
+    .step-card p { font-size: .92rem; font-weight: 500; color: var(--ink2); line-height: 1.65; }
+
+    /* HUMANIZAÇÃO */
+    .human-section { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+    .human-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
+    }
+
+    .human-photos-wrap {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .hphoto2 { border-radius: 18px; overflow: hidden; }
+    .hphoto2:first-child { aspect-ratio: 3/4; }
+    .hphoto2:last-child { aspect-ratio: 3/4; margin-top: 2.5rem; }
+    .hphoto2 img { width: 100%; height: 100%; object-fit: cover; }
+
+    .testimonials { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2rem; }
+    .testimonial {
+      background: rgba(255,255,255,.04); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.4rem 1.6rem;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .testimonial:hover { border-color: rgba(255,92,0,.25); box-shadow: 0 8px 24px rgba(255,92,0,.07); }
+    .testimonial p {
+      font-size: .95rem; font-weight: 500; color: var(--ink2);
+      line-height: 1.65; margin-bottom: .9rem; font-style: italic;
+    }
+    .t-author { display: flex; align-items: center; gap: .75rem; }
+    .t-avatar { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; flex-shrink: 0; }
+    .t-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .t-name { font-size: .85rem; font-weight: 800; color: var(--ink); }
+    .t-role { font-size: .75rem; font-weight: 500; color: var(--ink3); }
+
+    /* PARA QUEM É */
+    .forwho-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+    .fcard {
+      border-radius: var(--radius); padding: 2.5rem; border: 1px solid var(--border);
+      transition: box-shadow .25s, transform .25s;
+    }
+    .fcard:hover { box-shadow: 0 16px 40px rgba(0,0,0,.08); transform: translateY(-4px); }
+    .fcard.lojista { background: var(--orange); color: #fff; border-color: var(--orange); }
+    .fcard.consumidor { background: rgba(255,255,255,.04); }
+    .fcard-icon { font-size: 2.2rem; margin-bottom: 1.2rem; }
+    .fcard h3 { font-weight: 900; font-size: 1.35rem; margin-bottom: .6rem; }
+    .fcard .sub { font-size: .98rem; font-weight: 500; margin-bottom: 1.8rem; line-height: 1.65; }
+    .fcard.lojista .sub { color: rgba(255,255,255,.8); }
+    .fcard.consumidor .sub { color: var(--ink2); }
+    .fcard ul { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+    .fcard ul li { display: flex; align-items: flex-start; gap: .7rem; font-size: .95rem; font-weight: 600; line-height: 1.5; }
+    .fcard.lojista ul li { color: rgba(255,255,255,.9); }
+    .fcard.consumidor ul li { color: var(--ink2); }
+    .fcheck {
+      width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; margin-top: 1px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .7rem; font-weight: 900;
+    }
+    .fcard.lojista .fcheck { background: rgba(255,255,255,.25); color: #fff; }
+    .fcard.consumidor .fcheck { background: var(--orange-light); color: var(--orange); }
+
+    /* DIFERENCIAIS */
+    .diff-section { background: var(--bg2); border-top: 1px solid var(--border); }
+    .diff-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+    .diff-card {
+      background: rgba(255,255,255,.04); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2rem;
+      transition: box-shadow .25s, transform .25s, border-color .25s;
+    }
+    .diff-card:hover { box-shadow: 0 12px 32px rgba(255,92,0,.09); transform: translateY(-4px); border-color: rgba(255,92,0,.2); }
+    .diff-icon {
+      width: 50px; height: 50px; border-radius: 14px;
+      background: var(--orange-light); display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 1.2rem;
+    }
+    .diff-card h3 { font-weight: 800; font-size: 1rem; margin-bottom: .6rem; }
+    .diff-card p { font-size: .92rem; font-weight: 500; color: var(--ink2); line-height: 1.65; }
+
+    /* PRICING */
+    .pricing-section { background: var(--bg); }
+    .pricing-wrap { display: flex; justify-content: center; }
+    .price-card {
+      background: rgba(255,255,255,.05); border: 2px solid var(--orange);
+      border-radius: 28px; padding: 3.5rem;
+      width: 100%; max-width: 500px; text-align: center;
+      box-shadow: 0 20px 60px rgba(255,92,0,.12);
+      position: relative;
+    }
+    .price-badge {
+      display: inline-block; background: var(--orange); color: #fff;
+      font-size: .72rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase;
+      padding: .4rem 1.1rem; border-radius: 100px; margin-bottom: 1.8rem;
+    }
+    .price-original {
+      font-size: 1rem; font-weight: 600; color: var(--ink2);
+      text-decoration: line-through; margin-bottom: .3rem;
+    }
+    .price-amount {
+      font-weight: 900; font-size: 5.5rem; color: var(--ink);
+      line-height: 1; letter-spacing: -.05em;
+    }
+    .price-amount sup { font-size: 2rem; vertical-align: super; font-weight: 700; color: var(--orange); }
+    .price-amount span { font-size: 1.1rem; font-weight: 500; color: var(--ink3); }
+    .price-sub { font-size: .88rem; font-weight: 600; color: var(--ink3); margin: .6rem 0 1.5rem; }
+    .price-urgency {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: var(--orange-light); border: 1px solid rgba(255,92,0,.25);
+      border-radius: 100px; padding: .4rem 1rem;
+      font-size: .8rem; font-weight: 700; color: var(--orange);
+      margin-bottom: 2rem;
+    }
+    .price-list {
+      list-style: none; text-align: left;
+      display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.5rem;
+    }
+    .price-list li {
+      display: flex; align-items: center; gap: .8rem;
+      font-size: .98rem; font-weight: 600; color: var(--ink2);
+    }
+    .price-list li::before {
+      content: '✓'; width: 22px; height: 22px; border-radius: 50%;
+      background: var(--orange-light); color: var(--orange);
+      font-weight: 900; font-size: .75rem;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+
+    /* CTA FINAL */
+    .cta-section {
+      background: transparent; padding: 8rem 2rem; text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; top: -150px; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,92,0,.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-inner { max-width: 680px; margin: 0 auto; position: relative; }
+    .cta-inner h2 {
+      font-weight: 900; font-size: clamp(2.2rem, 5vw, 4rem);
+      letter-spacing: -.035em; line-height: 1.05; margin-bottom: 1.2rem; color: var(--ink);
+    }
+    .cta-inner h2 em { font-style: normal; color: var(--orange); }
+    .cta-inner p { font-size: 1.1rem; font-weight: 500; color: var(--ink2); margin-bottom: 3rem; line-height: 1.7; }
+    .cta-btns { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+    .btn-white {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: transparent; color: #fff; font-weight: 700; font-size: .95rem;
+      padding: .95rem 2rem; border-radius: 100px; border: 1.5px solid rgba(255,255,255,.25);
+      text-decoration: none; transition: border-color .2s, transform .15s;
+    }
+    .btn-white:hover { border-color: rgba(255,255,255,.6); transform: translateY(-2px); }
+
+    /* FOOTER */
+    footer {
+      background: rgba(0,0,0,.85);
+      border-top: 1px solid var(--border);
+      padding: 4rem 3rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1.6fr 1.2fr 1fr;
+      gap: 3rem; padding-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .footer-logo { font-weight: 900; font-size: 1.3rem; color: #fff; text-decoration: none; display: inline-block; margin-bottom: .8rem; }
+    .footer-logo span { color: var(--orange); }
+    .footer-tagline { font-size: .85rem; font-weight: 500; color: rgba(255,255,255,.4); line-height: 1.6; margin-bottom: .6rem; }
+    .footer-cnpj { font-size: .75rem; color: rgba(255,255,255,.25); margin-bottom: 1.5rem; }
+    .footer-whatsapp {
+      display: inline-flex; align-items: center; gap: .6rem;
+      background: #25D366; color: #fff;
+      font-weight: 800; font-size: .85rem;
+      padding: .65rem 1.3rem; border-radius: 100px;
+      text-decoration: none; transition: opacity .2s, transform .15s;
+    }
+    .footer-whatsapp:hover { opacity: .88; transform: translateY(-2px); }
+    .footer-contact h4, .footer-links h4 {
+      font-size: .75rem; font-weight: 800; letter-spacing: .1em;
+      text-transform: uppercase; color: rgba(255,255,255,.35);
+      margin-bottom: 1.2rem;
+    }
+    .footer-contact ul, .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+    .footer-contact ul li {
+      display: flex; align-items: flex-start; gap: .6rem;
+      font-size: .85rem; font-weight: 500; color: rgba(255,255,255,.55); line-height: 1.5;
+    }
+    .footer-contact ul li svg { flex-shrink: 0; margin-top: 2px; opacity: .5; }
+    .footer-contact ul li a { color: rgba(255,255,255,.7); text-decoration: none; transition: color .2s; }
+    .footer-contact ul li a:hover { color: var(--orange); }
+    .footer-links ul li a { font-size: .85rem; font-weight: 500; color: rgba(255,255,255,.45); text-decoration: none; transition: color .2s; }
+    .footer-links ul li a:hover { color: var(--orange); }
+    .footer-bottom {
+      max-width: 1100px; margin: 2rem auto 0;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem;
+    }
+    .footer-bottom p { font-size: .75rem; font-weight: 500; color: rgba(255,255,255,.2); }
+    .footer-bottom a { color: rgba(255,255,255,.3); text-decoration: none; transition: color .2s; }
+    .footer-bottom a:hover { color: var(--orange); }
+    @media (max-width: 760px) {
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .4; }
+    }
+
+    @media (max-width: 960px) {
+      .hero { grid-template-columns: 1fr; padding-top: 7rem; }
+      .hero-right { display: none; }
+      .steps-grid { grid-template-columns: repeat(2, 1fr); }
+      .forwho-grid { grid-template-columns: 1fr; }
+      .diff-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .human-grid { grid-template-columns: 1fr; }
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 560px) {
+      .steps-grid { grid-template-columns: 1fr; }
+      .diff-grid { grid-template-columns: 1fr; }
+      .section { padding: 4rem 1.5rem; }
+      .price-card { padding: 2rem 1.5rem; }
+    }
+
+    /* ── GRADIENTE CENTRAL estilo CRMBonus ── */
+    .mid-gradient {
+      position: relative;
+      background:
+        radial-gradient(ellipse 120% 60% at 0% 0%,   #FF6000 0%, #C03000 30%, transparent 65%),
+        radial-gradient(ellipse 100% 60% at 100% 100%, #D02000 0%, #900000 35%, transparent 60%),
+        radial-gradient(ellipse 80%  50% at 50% 50%,  #802000 0%, transparent 70%),
+        linear-gradient(160deg, #2A0E00 0%, #1A0800 50%, #0E0400 100%);
+    }
+
+    .mid-gradient .step-card {
+      background: rgba(0,0,0,.35);
+      border-color: rgba(255,255,255,.12);
+      backdrop-filter: blur(8px);
+    }
+    .mid-gradient .step-card:hover {
+      border-color: rgba(255,255,255,.3);
+      box-shadow: 0 16px 40px rgba(0,0,0,.3);
+    }
+    .mid-gradient .step-num {
+      background: rgba(255,255,255,.15);
+      color: #fff;
+      border-color: rgba(255,255,255,.25);
+    }
+    .mid-gradient .testimonial {
+      background: rgba(0,0,0,.3);
+      border-color: rgba(255,255,255,.1);
+    }
+    .mid-gradient .fcard.consumidor {
+      background: rgba(0,0,0,.3);
+      border-color: rgba(255,255,255,.1);
+    }
+    .mid-gradient .diff-card {
+      background: rgba(0,0,0,.3);
+      border-color: rgba(255,255,255,.1);
+    }
+    .mid-gradient .diff-card:hover {
+      border-color: rgba(255,255,255,.3);
+    }
+    .mid-gradient .diff-icon {
+      background: rgba(255,255,255,.15);
+    }
+    .mid-gradient .human-section {
+      background: transparent !important;
+    }
+    .mid-gradient .section-p,
+    .mid-gradient .step-card p,
+    .mid-gradient .diff-card p,
+    .mid-gradient .fcard .sub,
+    .mid-gradient .fcard ul li {
+      color: rgba(255,255,255,.8) !important;
+    }
+    .mid-gradient .fcard.consumidor h3 {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo" style="display:flex;align-items:center;text-decoration:none;"><svg viewBox="0 0 260 60" xmlns="http://www.w3.org/2000/svg" height="32" style="display:block">
+  <rect x="0" y="8" width="44" height="44" rx="11" fill="#FF6A00"/>
+  <filter id="glow-nav"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <line x1="13" y1="39" x2="31" y2="21" stroke="white" stroke-width="2.5" stroke-linecap="round" filter="url(#glow-nav)"/>
+  <polyline points="17,21 31,21 31,35" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow-nav)"/>
+  <text x="56" y="43" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="36" fill="white" letter-spacing="-1">Promo<tspan fill="#FF6A00">App</tspan></text>
+</svg></a>
+  <ul class="nav-links">
+    <li><a href="#como-funciona">Como funciona</a></li>
+    <li><a href="#para-quem">Para quem</a></li>
+    <li><a href="#diferenciais">Diferenciais</a></li>
+    <li><a href="#plano">Plano</a></li>
+    <li><a href="https://forms.gle/UhcrYN4TB2kzsmBc9" target="_blank" class="nav-cta">Cadastrar meu negócio</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section style="background: transparent;">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-tag"><span class="dot"></span>Goiânia, GO · Lançamento</div>
+      <h1 class="hero-h1">Sua promoção<br>na <em>palma</em> do<br>cliente.</h1>
+      <p class="hero-p">O Promo App envia as melhores ofertas do comércio de Goiânia direto no WhatsApp de quem está perto do seu negócio — todo dia, de forma automática.</p>
+      <div class="hero-btns">
+        <a href="https://forms.gle/uY9gTR4YzWuL75QdA" target="_blank" class="btn-orange">📲 Receber promoções grátis</a>
+        <a href="https://forms.gle/UhcrYN4TB2kzsmBc9" target="_blank" class="btn-outline">Sou lojista →</a>
+      </div>
+      <div class="hero-social">
+        <div class="avatars">
+          <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?w=80&h=80&fit=crop" alt=""/>
+          <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?w=80&h=80&fit=crop" alt=""/>
+          <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?w=80&h=80&fit=crop" alt=""/>
+          <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?w=80&h=80&fit=crop2" alt=""/>
+        </div>
+        <div class="social-text"><strong>+200 pessoas</strong> já se cadastraram em Goiânia</div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hphoto">
+        <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?w=400&h=500&fit=crop" alt="Lojista feliz"/>
+        <div class="chip">🏪 <span>+40 clientes</span> essa semana</div>
+      </div>
+      <div class="hphoto">
+        <img src="https://images.pexels.com/photos/4350099/pexels-photo-4350099.jpeg?w=400&h=600&fit=crop" alt="Mulher com celular"/>
+        <div class="chip">📲 Promoção <span>chegou!</span></div>
+      </div>
+      <div class="hphoto">
+        <img src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?w=400&h=300&fit=crop" alt="Pessoa feliz"/>
+        <div class="chip">💰 Economizei <span>R$89</span> hoje</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div><div class="stat-val">1/dia</div><div class="stat-label">promoção por lojista</div></div>
+    <div><div class="stat-val">R$97</div><div class="stat-label">preço de lançamento</div></div>
+    <div><div class="stat-val">100%</div><div class="stat-label">grátis para consumidores</div></div>
+    <div><div class="stat-val">WhatsApp</div><div class="stat-label">sem app para baixar</div></div>
+  </div>
+</div>
+
+<!-- MEIO DA PÁGINA: gradiente laranja/vermelho intenso estilo CRMBonus -->
+<div class="mid-gradient">
+
+<!-- COMO FUNCIONA -->
+<section id="como-funciona" style="background: transparent;">
+  <div class="section">
+    <div class="eyebrow">Como funciona</div>
+    <h2 class="section-h2">Do QR Code ao WhatsApp. Automático.</h2>
+    <p class="section-p">Quatro passos simples que conectam seu negócio aos clientes certos, na hora certa, todo dia.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-icon">🏪</div>
+        <h3>Lojista se cadastra</h3>
+        <p>Preenche um formulário simples e já está no ar. Sem configuração técnica, sem complicação nenhuma.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-icon">📌</div>
+        <h3>QR Code no balcão</h3>
+        <p>Uma plaquinha na entrada ou no caixa convida cada cliente a se cadastrar e receber promoções grátis.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-icon">✍️</div>
+        <h3>Promoção do dia</h3>
+        <p>O lojista cadastra uma oferta irresistível por dia. Nome, descrição, horário. Leva menos de 1 minuto.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <div class="step-icon">📲</div>
+        <h3>Cliente recebe na hora</h3>
+        <p>Assim que a promoção é publicada, ela vai direto no WhatsApp de todos os consumidores do bairro.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HUMANIZAÇÃO -->
+<div class="human-section" style="background: rgba(0,0,0,.3);">
+  <div class="section">
+    <div class="human-grid">
+      <div class="human-photos-wrap">
+        <div class="hphoto2">
+          <img src="https://images.pexels.com/photos/7163950/pexels-photo-7163950.jpeg?w=400&h=500&fit=crop" alt="Homem lojista satisfeito"/>
+        </div>
+        <div class="hphoto2">
+          <img src="https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?w=400&h=500&fit=crop" alt="Mulher consumidora feliz"/>
+        </div>
+      </div>
+      <div>
+        <div class="eyebrow">Histórias reais</div>
+        <h2 class="section-h2">Negócios que crescem. Clientes que economizam.</h2>
+        <p class="section-p">O Promo App foi criado para o comércio local de Goiânia. Simples, direto e com resultado no mesmo dia.</p>
+        <div class="testimonials">
+          <div class="testimonial">
+            <p>"Mandei a promoção de pizza às 8h da manhã e às 11h já tinha 12 mesas reservadas. Nunca vi resultado tão rápido na vida."</p>
+            <div class="t-author">
+              <div class="t-avatar"><img src="https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?w=80&h=80&fit=crop" alt="João"/></div>
+              <div>
+                <div class="t-name">João Carlos</div>
+                <div class="t-role">Dono de pizzaria · Setor Bueno</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial">
+            <p>"Recebi a promoção de um salão perto de casa e fui no mesmo dia. Economizei R$40 e virei cliente fiel da loja."</p>
+            <div class="t-author">
+              <div class="t-avatar"><img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?w=80&h=80&fit=crop6" alt="Ana"/></div>
+              <div>
+                <div class="t-name">Ana Paula</div>
+                <div class="t-role">Consumidora · Jardim Goiás</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PARA QUEM É -->
+<section id="para-quem" style="background: rgba(0,0,0,.15);">
+  <div class="section">
+    <div class="eyebrow">Para quem é</div>
+    <h2 class="section-h2">Feito pros dois lados do balcão.</h2>
+    <p class="section-p">Uma plataforma que beneficia quem vende e quem compra ao mesmo tempo, todo dia.</p>
+    <div class="forwho-grid">
+      <div class="fcard lojista">
+        <div class="fcard-icon">🏪</div>
+        <h3>Para Lojistas & Serviços</h3>
+        <p class="sub">Varejo, restaurantes, salões, academias, clínicas — qualquer negócio que queira atrair mais clientes todo dia sem complicação.</p>
+        <ul>
+          <li><span class="fcheck">✓</span> 1 promoção por dia para toda a base</li>
+          <li><span class="fcheck">✓</span> Disparo automático via WhatsApp</li>
+          <li><span class="fcheck">✓</span> QR Code exclusivo para o estabelecimento</li>
+          <li><span class="fcheck">✓</span> Sem app, sem painel complicado</li>
+          <li><span class="fcheck">✓</span> Resultado mensurável no mesmo dia</li>
+        </ul>
+      </div>
+      <div class="fcard consumidor">
+        <div class="fcard-icon">🛍️</div>
+        <h3>Para Consumidores</h3>
+        <p class="sub">Moradores de Goiânia que querem aproveitar as melhores ofertas do comércio local sem precisar procurar.</p>
+        <ul>
+          <li><span class="fcheck">✓</span> 100% gratuito — sempre</li>
+          <li><span class="fcheck">✓</span> Escolha os bairros que quer receber</li>
+          <li><span class="fcheck">✓</span> Direto no WhatsApp, sem baixar nada</li>
+          <li><span class="fcheck">✓</span> Ofertas reais do comércio local</li>
+          <li><span class="fcheck">✓</span> Cancele quando quiser</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<div id="diferenciais" class="diff-section">
+  <div class="section">
+    <div class="eyebrow">Diferenciais</div>
+    <h2 class="section-h2">Por que o Promo App funciona?</h2>
+    <p class="section-p">Não é mais um app para baixar. É a solução que usa o que as pessoas já usam todo dia — o WhatsApp.</p>
+    <div class="diff-grid">
+      <div class="diff-card">
+        <div class="diff-icon">📲</div>
+        <h3>WhatsApp como canal</h3>
+        <p>97% dos brasileiros usam WhatsApp. Sua promoção chega onde o cliente já está, sem barreiras de instalação.</p>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon">⚡</div>
+        <h3>Disparo instantâneo</h3>
+        <p>Assim que o lojista publica, a promoção é enviada automaticamente. Sem agendamento, sem espera.</p>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon">📍</div>
+        <h3>Segmentado por bairro</h3>
+        <p>O consumidor recebe só o que é relevante pra ele. O lojista fala com quem está a minutos de distância.</p>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon">🎯</div>
+        <h3>Uma oferta por dia</h3>
+        <p>Sem spam, sem sobrecarga de mensagens. Uma promoção por lojista por dia mantém o engajamento sempre alto.</p>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon">💰</div>
+        <h3>Custo acessível</h3>
+        <p>R$97/mês no lançamento — menos do que um impulsionamento no Instagram, com resultado muito mais direto.</p>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon">🔧</div>
+        <h3>Zero complicação</h3>
+        <p>Sem app para instalar, sem painel complicado. O lojista preenche um formulário e a promoção vai embora.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- fim mid-gradient -->
+
+<!-- PRICING -->
+<section id="plano" style="background: transparent;">
+  <div class="section">
+    <div class="eyebrow" style="text-align:center;">Plano para lojistas</div>
+    <h2 class="section-h2" style="text-align:center; margin: 0 auto 1rem;">Preço de lançamento.<br>Sem surpresas.</h2>
+    <p class="section-p" style="text-align:center; margin: 0 auto 3rem;">Sem fidelidade, sem taxa de adesão. Cancele quando quiser.</p>
+    <div class="pricing-wrap">
+      <div class="price-card">
+        <div class="price-badge">🚀 Oferta de Lançamento</div>
+        <div class="price-original">De R$ 350,00/mês</div>
+        <div class="price-amount"><sup>R$</sup>97<span>/mês</span></div>
+        <p class="price-sub">Cancele quando quiser · Sem fidelidade · Sem taxa de adesão</p>
+        <div class="price-urgency">⏰ Válido apenas para os primeiros lojistas fundadores</div>
+        <ul class="price-list">
+          <li>1 promoção publicada por dia</li>
+          <li>Alcance toda a base de consumidores do bairro</li>
+          <li>Disparo automático via WhatsApp</li>
+          <li>QR Code exclusivo para impressão</li>
+          <li>Plaquinha digital para o estabelecimento</li>
+          <li>Suporte via WhatsApp</li>
+        </ul>
+        <a href="https://forms.gle/UhcrYN4TB2kzsmBc9" target="_blank" class="btn-orange" style="width:100%; justify-content:center; border-radius:14px; font-size:1rem; padding:1.1rem 2rem;">Quero cadastrar meu negócio →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<div class="cta-section">
+  <div class="cta-inner">
+    <h2>Garanta já sua vaga<br>e conquiste <em>Goiânia.</em></h2>
+    <p>Lojistas fundadores garantem R$97/mês. Consumidores entram de graça e recebem promoções dos bairros que escolherem.</p>
+    <div class="cta-btns">
+      <a href="https://forms.gle/uY9gTR4YzWuL75QdA" target="_blank" class="btn-orange">📲 Quero receber promoções grátis</a>
+      <a href="https://wa.me/5562993223895?text=Olá!%20Quero%20saber%20mais%20sobre%20o%20Promo%20App" target="_blank" class="btn-white">💬 Falar com a equipe</a>
+    </div>
+  </div>
+    <p style="margin-top:2rem;font-size:.75rem;color:rgba(255,255,255,.2);max-width:500px;margin-left:auto;margin-right:auto;line-height:1.6;">Ao utilizar os serviços da PromoApp você concorda com nossos <a href="termos-de-uso.html" style="color:rgba(255,106,0,.6)">Termos de Uso</a> e <a href="politica-privacidade.html" style="color:rgba(255,106,0,.6)">Política de Privacidade</a>. A PromoApp não se responsabiliza pelas promoções divulgadas pelos anunciantes.</p>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="footer-logo" style="display:inline-flex;align-items:center;text-decoration:none;"><svg viewBox="0 0 260 60" xmlns="http://www.w3.org/2000/svg" height="38" style="display:block">
+  <rect x="0" y="8" width="44" height="44" rx="11" fill="#FF6A00"/>
+  <filter id="glow-foot"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <line x1="13" y1="39" x2="31" y2="21" stroke="white" stroke-width="2.5" stroke-linecap="round" filter="url(#glow-foot)"/>
+  <polyline points="17,21 31,21 31,35" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow-foot)"/>
+  <text x="56" y="43" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="36" fill="white" letter-spacing="-1">Promo<tspan fill="#FF6A00">App</tspan></text>
+</svg></a>
+      <p class="footer-tagline">A plataforma de promoções do comércio local de Goiânia.</p>
+      <p class="footer-cnpj">CNPJ: 21.824.467/0001-26</p>
+      <a href="https://wa.me/5562993223895?text=Olá!%20Quero%20saber%20mais%20sobre%20o%20Promo%20App"
+         target="_blank" class="footer-whatsapp">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Falar no WhatsApp
+      </a>
+    </div>
+
+    <div class="footer-contact">
+      <h4>Contato</h4>
+      <ul>
+        <li>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+          <a href="mailto:contato@promoapp.com.br">contato@promoapp.com.br</a>
+        </li>
+        <li>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Ed Alvorada — R. 137, 556 — 1º Andar<br>St. Marista, Goiânia - GO<br>74170-120</span>
+        </li>
+        <li style="margin-top:.5rem; font-size:.78rem; color: var(--ink3);">
+          Atendemos todos os segmentos e portes de empresas.
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-links">
+      <h4>Navegação</h4>
+      <ul>
+        <li><a href="#como-funciona">Como funciona</a></li>
+        <li><a href="#para-quem">Para quem é</a></li>
+        <li><a href="#diferenciais">Diferenciais</a></li>
+        <li><a href="#plano">Plano e preços</a></li>
+        <li><a href="https://forms.gle/uY9gTR4YzWuL75QdA" target="_blank">Cadastro consumidor</a></li>
+        <li><a href="https://forms.gle/UhcrYN4TB2kzsmBc9" target="_blank">Cadastro lojista</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 PromoApp. Todos os direitos reservados.</p>
+    <p><a href="https://www.promoapp.com.br">promoapp.com.br</a> · CNPJ 21.824.467/0001-26 · Goiânia, GO</p>
+    <p style="margin-top:.5rem"><a href="termos-de-uso.html">Termos de Uso</a> &nbsp;·&nbsp; <a href="politica-privacidade.html">Política de Privacidade</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Termos de Uso — PromoApp</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0A0704; --card: rgba(255,255,255,.04); --border: rgba(255,255,255,.08);
+      --orange: #FF6A00; --white: #FFFFFF; --white2: rgba(255,255,255,.7); --white3: rgba(255,255,255,.35);
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg); color: var(--white);
+      position: relative; overflow-x: hidden;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 100% 50% at 50% 100%, #C85000 0%, #8B3000 25%, transparent 65%), #0A0704;
+    }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 3rem; background: rgba(10,7,4,.92); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { text-decoration: none; }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .82rem; font-weight: 700; color: var(--white3);
+      text-decoration: none; transition: color .2s;
+    }
+    .back-btn:hover { color: var(--orange); }
+    .page {
+      position: relative; z-index: 1;
+      max-width: 780px; margin: 0 auto;
+      padding: 7rem 2rem 5rem;
+    }
+    .doc-header {
+      margin-bottom: 3rem; padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .doc-eyebrow {
+      font-size: .72rem; font-weight: 800; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--orange); margin-bottom: .8rem;
+    }
+    .doc-title { font-weight: 900; font-size: 2.2rem; letter-spacing: -.03em; line-height: 1.1; margin-bottom: .8rem; }
+    .doc-meta { font-size: .82rem; font-weight: 500; color: var(--white3); }
+    .doc-meta strong { color: var(--white2); }
+    h2 { font-weight: 800; font-size: 1.1rem; color: var(--orange); margin: 2.5rem 0 .8rem; }
+    p { font-size: .95rem; font-weight: 500; color: var(--white2); line-height: 1.8; margin-bottom: 1rem; }
+    ul { list-style: none; margin-bottom: 1rem; display: flex; flex-direction: column; gap: .5rem; }
+    ul li {
+      font-size: .95rem; font-weight: 500; color: var(--white2); line-height: 1.7;
+      display: flex; align-items: flex-start; gap: .6rem;
+    }
+    ul li::before { content: '›'; color: var(--orange); font-weight: 900; flex-shrink: 0; margin-top: 2px; }
+
+    .alert-box {
+      background: rgba(255,106,0,.1); border: 1px solid rgba(255,106,0,.3);
+      border-radius: 14px; padding: 1.3rem 1.5rem; margin: 1.5rem 0;
+    }
+    .alert-box p { color: rgba(255,200,100,.9); margin-bottom: 0; font-weight: 600; }
+
+    .warning-box {
+      background: rgba(239,68,68,.08); border: 1px solid rgba(239,68,68,.3);
+      border-radius: 14px; padding: 1.3rem 1.5rem; margin: 1.5rem 0;
+    }
+    .warning-box p { color: rgba(255,160,160,.9); margin-bottom: 0; font-weight: 600; line-height: 1.7; }
+
+    .highlight-box {
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1);
+      border-left: 3px solid var(--orange);
+      border-radius: 14px; padding: 1.3rem 1.5rem; margin: 1.5rem 0;
+    }
+    .highlight-box p { color: var(--white2); margin-bottom: 0; font-weight: 600; line-height: 1.7; }
+
+    .contact-box {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.5rem; margin-top: 2rem;
+    }
+    .contact-box p { margin-bottom: .4rem; }
+    .contact-box a { color: var(--orange); text-decoration: none; }
+
+    /* ACEITE */
+    .aceite-box {
+      background: rgba(255,106,0,.08); border: 2px solid rgba(255,106,0,.35);
+      border-radius: 18px; padding: 2rem; margin-top: 3rem;
+      text-align: center;
+    }
+    .aceite-box h3 { font-weight: 900; font-size: 1.1rem; margin-bottom: .8rem; }
+    .aceite-box p { font-size: .88rem; margin-bottom: 1.2rem; }
+    .aceite-check {
+      display: flex; align-items: flex-start; gap: .75rem;
+      background: rgba(255,255,255,.04); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1rem 1.2rem;
+      text-align: left; margin-bottom: .8rem; cursor: pointer;
+      transition: border-color .2s;
+    }
+    .aceite-check:hover { border-color: rgba(255,106,0,.3); }
+    .aceite-check input { width: 18px; height: 18px; accent-color: var(--orange); flex-shrink: 0; margin-top: 2px; cursor: pointer; }
+    .aceite-check label { font-size: .88rem; font-weight: 600; color: var(--white2); line-height: 1.55; cursor: pointer; }
+    .aceite-check label a { color: var(--orange); text-decoration: none; }
+    .aceite-btn {
+      display: inline-block; background: var(--orange); color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: .95rem;
+      padding: .9rem 2.5rem; border-radius: 100px; border: none; cursor: pointer;
+      box-shadow: 0 8px 24px rgba(255,106,0,.35); transition: opacity .2s, transform .15s;
+      text-decoration: none; margin-top: .5rem; opacity: .4; pointer-events: none;
+    }
+    .aceite-btn.active { opacity: 1; pointer-events: auto; }
+    .aceite-btn.active:hover { opacity: .88; transform: translateY(-2px); }
+
+    footer-doc {
+      display: block; text-align: center; padding: 2rem;
+      font-size: .78rem; color: var(--white3);
+      border-top: 1px solid var(--border); margin-top: 3rem;
+    }
+    a { color: var(--orange); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg viewBox="0 0 200 45" xmlns="http://www.w3.org/2000/svg" height="26">
+      <rect x="0" y="3" width="36" height="36" rx="9" fill="#FF6A00"/>
+      <line x1="9" y1="28" x2="25" y2="14" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+      <polyline points="13,14 25,14 25,26" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="44" y="32" font-family="'Plus Jakarta Sans',sans-serif" font-weight="900" font-size="26" fill="white" letter-spacing="-1">PromoApp</text>
+      <text x="44" y="32" font-family="'Plus Jakarta Sans',sans-serif" font-weight="900" font-size="26" fill="#FF6A00" letter-spacing="-1" clip-path="url(#cp2)">PromoApp</text>
+      <clipPath id="cp2"><rect x="118" y="0" width="90" height="45"/></clipPath>
+    </svg>
+  </a>
+  <a href="promoapp-landing-v4.html" class="back-btn">← Voltar ao site</a>
+</nav>
+
+<div class="page">
+  <div class="doc-header">
+    <div class="doc-eyebrow">Documento Legal</div>
+    <h1 class="doc-title">Termos de Uso</h1>
+    <p class="doc-meta">
+      <strong>PromoApp</strong> · CNPJ: 21.824.467/0001-26<br>
+      Ed Alvorada — R. 137, 556 — 1º Andar, St. Marista, Goiânia - GO, 74170-120<br>
+      Última atualização: <strong>Junho de 2026</strong>
+    </p>
+  </div>
+
+  <p>Bem-vindo à <strong>PromoApp</strong>. Ao se cadastrar, acessar ou utilizar qualquer serviço desta plataforma — seja como <strong>consumidor</strong> ou como <strong>lojista/anunciante</strong> — você concorda integralmente com os presentes Termos de Uso. Leia com atenção antes de prosseguir.</p>
+
+  <h2>1. O que é a PromoApp</h2>
+  <p>A PromoApp é uma <strong>plataforma intermediária de divulgação de promoções</strong> que conecta estabelecimentos comerciais a consumidores da cidade de Goiânia - GO por meio de mensagens via WhatsApp. A PromoApp atua exclusivamente como canal de comunicação e divulgação, <strong>não sendo parte nas relações comerciais</strong> entre lojistas e consumidores.</p>
+
+  <div class="highlight-box">
+    <p>📢 A PromoApp é uma vitrine digital. Assim como um outdoor ou um panfleto, somos responsáveis pelo canal de distribuição — não pelo conteúdo, veracidade ou cumprimento das ofertas anunciadas.</p>
+  </div>
+
+  <h2>2. Isenção de responsabilidade — Promoções e Anúncios</h2>
+
+  <div class="warning-box">
+    <p>🚨 ATENÇÃO: A PromoApp <strong>NÃO se responsabiliza</strong> por:<br><br>
+    · A veracidade, originalidade, qualidade ou validade das promoções divulgadas<br>
+    · O cumprimento das ofertas anunciadas pelos lojistas<br>
+    · A qualidade dos produtos e serviços comercializados pelos anunciantes<br>
+    · Danos materiais, morais ou de qualquer natureza decorrentes de relações comerciais entre consumidores e anunciantes<br>
+    · Informações incorretas, enganosas ou desatualizadas inseridas pelos lojistas<br>
+    · A regularidade fiscal, sanitária ou legal dos estabelecimentos anunciantes</p>
+  </div>
+
+  <p>A PromoApp <strong>não realiza validação, auditoria ou verificação prévia</strong> dos anunciantes, de suas promoções, produtos ou serviços. Cada lojista é inteiramente responsável pelo conteúdo que publica na plataforma.</p>
+
+  <h2>3. Orientações de segurança ao consumidor</h2>
+  <p>Antes de se deslocar até qualquer estabelecimento anunciado na PromoApp, recomendamos fortemente que o consumidor:</p>
+  <ul>
+    <li>Confirme a promoção diretamente com o estabelecimento antes de ir ao local</li>
+    <li>Verifique a reputação do estabelecimento em plataformas como Reclame Aqui, Google Maps e redes sociais</li>
+    <li>Confirme o endereço e horário de funcionamento antes de se deslocar</li>
+    <li>Desconfie de promoções com preços muito abaixo do mercado</li>
+    <li>Nunca realize pagamentos antecipados sem garantias</li>
+    <li>Em caso de dúvida, entre em contato com a PromoApp antes de consumir</li>
+  </ul>
+
+  <div class="alert-box">
+    <p>💡 Sua segurança é nossa prioridade. Sempre pesquise e confirme antes de ir até o estabelecimento. A PromoApp é um canal de divulgação — a decisão de compra é sempre sua.</p>
+  </div>
+
+  <h2>4. Denúncia de irregularidades</h2>
+  <p>Caso você identifique qualquer anunciante agindo de <strong>má-fé, desonestidade, fraude</strong> ou qualquer conduta suspeita, tome as seguintes providências:</p>
+  <ul>
+    <li><strong>Acione as autoridades competentes:</strong> Procon, Polícia Civil, Ministério Público ou órgão de defesa do consumidor de sua cidade</li>
+    <li><strong>Nos informe imediatamente</strong> pelo WhatsApp (62) 99322-3895 ou pelo e-mail contato@promoapp.com.br</li>
+    <li>O anunciante será <strong>removido imediatamente</strong> da plataforma após verificação da denúncia</li>
+  </ul>
+  <p>A PromoApp tem <strong>tolerância zero</strong> com anunciantes que ajam de má-fé. Qualquer conduta irregular resultará no banimento permanente do estabelecimento da plataforma.</p>
+
+  <h2>5. Responsabilidades do lojista / anunciante</h2>
+  <p>Ao se cadastrar como anunciante na PromoApp, o lojista declara e se compromete a:</p>
+  <ul>
+    <li>Fornecer apenas informações verdadeiras e atualizadas sobre seu estabelecimento</li>
+    <li>Publicar somente promoções reais, que efetivamente serão honradas no ato do atendimento</li>
+    <li>Respeitar o limite de <strong>1 (uma) promoção por dia</strong> no plano básico</li>
+    <li>Não utilizar a plataforma para divulgar conteúdo ilegal, enganoso, ofensivo ou que viole direitos de terceiros</li>
+    <li>Manter seus dados cadastrais atualizados</li>
+    <li>Responder civil e criminalmente por qualquer dano causado a consumidores em decorrência de suas promoções</li>
+    <li>Cumprir integralmente o Código de Defesa do Consumidor (Lei nº 8.078/1990) e demais legislações aplicáveis</li>
+  </ul>
+
+  <div class="warning-box">
+    <p>⚖️ O lojista é o único e exclusivo responsável pelas promoções que publica. A PromoApp reserva-se o direito de remover imediatamente qualquer anunciante que viole estes termos, sem aviso prévio e sem direito a reembolso.</p>
+  </div>
+
+  <h2>6. Responsabilidades do consumidor</h2>
+  <ul>
+    <li>Fornecer dados verdadeiros no cadastro</li>
+    <li>Não compartilhar sua conta ou dados de acesso com terceiros</li>
+    <li>Utilizar a plataforma exclusivamente para fins lícitos</li>
+    <li>Não realizar denúncias falsas ou de má-fé contra anunciantes</li>
+    <li>Solicitar descadastro caso não deseje mais receber comunicações</li>
+  </ul>
+
+  <h2>7. Assinatura, pagamento e cancelamento (lojistas)</h2>
+  <ul>
+    <li>O valor do plano de lançamento é de <strong>R$ 97,00 mensais</strong></li>
+    <li>O pagamento deve ser realizado mensalmente para manutenção do acesso</li>
+    <li>O cancelamento pode ser solicitado a qualquer momento, sem multa ou fidelidade</li>
+    <li>Após o cancelamento, o acesso é encerrado no fim do período já pago</li>
+    <li>Não há reembolso proporcional por cancelamento no meio do período</li>
+    <li>A PromoApp reserva-se o direito de reajustar os valores mediante aviso prévio de 30 dias</li>
+  </ul>
+
+  <h2>8. Propriedade intelectual</h2>
+  <p>A marca PromoApp, logotipo, layout, design e todos os conteúdos produzidos pela plataforma são de propriedade exclusiva da PromoApp e protegidos pela legislação de propriedade intelectual. É proibida a reprodução, cópia ou uso sem autorização expressa.</p>
+
+  <h2>9. Suspensão e encerramento de contas</h2>
+  <p>A PromoApp pode suspender ou encerrar o acesso de qualquer usuário, a qualquer momento, nas seguintes situações:</p>
+  <ul>
+    <li>Violação destes Termos de Uso</li>
+    <li>Denúncias comprovadas de má conduta</li>
+    <li>Inadimplência (lojistas)</li>
+    <li>Uso indevido, abusivo ou fraudulento da plataforma</li>
+    <li>Determinação judicial ou de autoridade competente</li>
+  </ul>
+
+  <h2>10. Foro e legislação aplicável</h2>
+  <p>Estes Termos são regidos pelas leis brasileiras. Fica eleito o foro da <strong>Comarca de Goiânia - GO</strong> para dirimir quaisquer controvérsias decorrentes deste instrumento, com renúncia expressa a qualquer outro, por mais privilegiado que seja.</p>
+
+  <h2>11. Contato</h2>
+  <div class="contact-box">
+    <p><strong>PromoApp</strong> · CNPJ 21.824.467/0001-26</p>
+    <p>📧 <a href="mailto:contato@promoapp.com.br">contato@promoapp.com.br</a></p>
+    <p>📍 Ed Alvorada — R. 137, 556 — 1º Andar, St. Marista, Goiânia - GO</p>
+    <p>📲 <a href="https://wa.me/5562993223895">(62) 99322-3895</a></p>
+  </div>
+
+  <!-- ACEITE OBRIGATÓRIO -->
+  <div class="aceite-box">
+    <h3>✅ Aceite dos Termos</h3>
+    <p>Para utilizar os serviços da PromoApp, confirme sua concordância marcando as opções abaixo:</p>
+
+    <div class="aceite-check" onclick="toggleCheck('c1')">
+      <input type="checkbox" id="c1" onchange="checkAceite()"/>
+      <label for="c1">Li e concordo com os <strong>Termos de Uso</strong> da PromoApp, incluindo a isenção de responsabilidade sobre promoções de anunciantes.</label>
+    </div>
+
+    <div class="aceite-check" onclick="toggleCheck('c2')">
+      <input type="checkbox" id="c2" onchange="checkAceite()"/>
+      <label for="c2">Li e concordo com a <strong><a href="politica-privacidade.html" onclick="event.stopPropagation()">Política de Privacidade</a></strong> e autorizo o uso dos meus dados conforme descrito.</label>
+    </div>
+
+    <div class="aceite-check" onclick="toggleCheck('c3')">
+      <input type="checkbox" id="c3" onchange="checkAceite()"/>
+      <label for="c3">Estou ciente de que a PromoApp <strong>não valida</strong> os anunciantes e <strong>não se responsabiliza</strong> pelas promoções divulgadas, sendo minha responsabilidade verificar as informações antes de consumir.</label>
+    </div>
+
+    <button class="aceite-btn" id="aceite-btn" onclick="confirmarAceite()">Confirmar aceite e continuar →</button>
+  </div>
+
+</div>
+
+<footer-doc>© 2026 PromoApp · Todos os direitos reservados · CNPJ 21.824.467/0001-26</footer-doc>
+
+<script>
+  function toggleCheck(id) {
+    const cb = document.getElementById(id);
+    cb.checked = !cb.checked;
+    checkAceite();
+  }
+  function checkAceite() {
+    const c1 = document.getElementById('c1').checked;
+    const c2 = document.getElementById('c2').checked;
+    const c3 = document.getElementById('c3').checked;
+    const btn = document.getElementById('aceite-btn');
+    if (c1 && c2 && c3) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  }
+  function confirmarAceite() {
+    localStorage.setItem('promoapp_aceite', new Date().toISOString());
+    alert('✅ Aceite registrado com sucesso! Bem-vindo ao PromoApp.');
+    window.location.href = 'promoapp-landing-v4.html';
+  }
+</script>
+
+</body>
+</html>

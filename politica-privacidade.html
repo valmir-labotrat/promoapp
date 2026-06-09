@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Política de Privacidade — PromoApp</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0A0704; --card: rgba(255,255,255,.04); --border: rgba(255,255,255,.08);
+      --orange: #FF6A00; --white: #FFFFFF; --white2: rgba(255,255,255,.7); --white3: rgba(255,255,255,.35);
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg); color: var(--white);
+      position: relative; overflow-x: hidden;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 100% 50% at 50% 100%, #C85000 0%, #8B3000 25%, transparent 65%), #0A0704;
+    }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 3rem; background: rgba(10,7,4,.92); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { text-decoration: none; }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .82rem; font-weight: 700; color: var(--white3);
+      text-decoration: none; transition: color .2s;
+    }
+    .back-btn:hover { color: var(--orange); }
+    .page {
+      position: relative; z-index: 1;
+      max-width: 780px; margin: 0 auto;
+      padding: 7rem 2rem 5rem;
+    }
+    .doc-header {
+      margin-bottom: 3rem; padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .doc-eyebrow {
+      font-size: .72rem; font-weight: 800; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--orange); margin-bottom: .8rem;
+    }
+    .doc-title {
+      font-weight: 900; font-size: 2.2rem; letter-spacing: -.03em;
+      line-height: 1.1; margin-bottom: .8rem;
+    }
+    .doc-meta { font-size: .82rem; font-weight: 500; color: var(--white3); }
+    .doc-meta strong { color: var(--white2); }
+
+    h2 {
+      font-weight: 800; font-size: 1.1rem; color: var(--orange);
+      margin: 2.5rem 0 .8rem; display: flex; align-items: center; gap: .5rem;
+    }
+    p { font-size: .95rem; font-weight: 500; color: var(--white2); line-height: 1.8; margin-bottom: 1rem; }
+    ul { list-style: none; margin-bottom: 1rem; display: flex; flex-direction: column; gap: .5rem; }
+    ul li {
+      font-size: .95rem; font-weight: 500; color: var(--white2); line-height: 1.7;
+      display: flex; align-items: flex-start; gap: .6rem;
+    }
+    ul li::before { content: '›'; color: var(--orange); font-weight: 900; flex-shrink: 0; margin-top: 2px; }
+
+    .alert-box {
+      background: rgba(255,106,0,.1); border: 1px solid rgba(255,106,0,.3);
+      border-radius: 14px; padding: 1.3rem 1.5rem; margin: 1.5rem 0;
+    }
+    .alert-box p { color: rgba(255,200,100,.9); margin-bottom: 0; font-weight: 600; }
+
+    .warning-box {
+      background: rgba(239,68,68,.08); border: 1px solid rgba(239,68,68,.25);
+      border-radius: 14px; padding: 1.3rem 1.5rem; margin: 1.5rem 0;
+    }
+    .warning-box p { color: rgba(255,150,150,.9); margin-bottom: 0; font-weight: 600; }
+
+    .contact-box {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.5rem; margin-top: 2rem;
+    }
+    .contact-box p { margin-bottom: .4rem; }
+    .contact-box a { color: var(--orange); text-decoration: none; }
+
+    footer-doc {
+      display: block; text-align: center; padding: 2rem;
+      font-size: .78rem; color: var(--white3);
+      border-top: 1px solid var(--border); margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg viewBox="0 0 200 45" xmlns="http://www.w3.org/2000/svg" height="26">
+      <rect x="0" y="3" width="36" height="36" rx="9" fill="#FF6A00"/>
+      <line x1="9" y1="28" x2="25" y2="14" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+      <polyline points="13,14 25,14 25,26" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="44" y="32" font-family="'Plus Jakarta Sans',sans-serif" font-weight="900" font-size="26" fill="white" letter-spacing="-1">PromoApp</text>
+      <text x="44" y="32" font-family="'Plus Jakarta Sans',sans-serif" font-weight="900" font-size="26" fill="#FF6A00" letter-spacing="-1" clip-path="url(#cp1)">PromoApp</text>
+      <clipPath id="cp1"><rect x="118" y="0" width="90" height="45"/></clipPath>
+    </svg>
+  </a>
+  <a href="promoapp-landing-v4.html" class="back-btn">← Voltar ao site</a>
+</nav>
+
+<div class="page">
+  <div class="doc-header">
+    <div class="doc-eyebrow">Documento Legal</div>
+    <h1 class="doc-title">Política de Privacidade</h1>
+    <p class="doc-meta">
+      <strong>PromoApp</strong> · CNPJ: 21.824.467/0001-26<br>
+      Ed Alvorada — R. 137, 556 — 1º Andar, St. Marista, Goiânia - GO, 74170-120<br>
+      Última atualização: <strong>Junho de 2026</strong>
+    </p>
+  </div>
+
+  <p>A PromoApp valoriza e respeita a privacidade de todos os seus usuários — lojistas e consumidores. Esta Política de Privacidade descreve como coletamos, usamos, armazenamos e protegemos seus dados pessoais, em conformidade com a <strong>Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018)</strong>.</p>
+
+  <p>Ao utilizar qualquer serviço da PromoApp — incluindo o cadastro em formulários, recebimento de mensagens via WhatsApp ou anúncio de promoções — você declara ter lido, compreendido e concordado com esta Política.</p>
+
+  <h2>1. Quais dados coletamos</h2>
+  <p><strong>De consumidores:</strong></p>
+  <ul>
+    <li>Nome completo</li>
+    <li>Número de WhatsApp (com DDD)</li>
+    <li>Bairros de interesse selecionados</li>
+    <li>Data e horário do cadastro</li>
+  </ul>
+  <p><strong>De lojistas e anunciantes:</strong></p>
+  <ul>
+    <li>Nome do estabelecimento</li>
+    <li>CNPJ ou CPF do responsável</li>
+    <li>Número de WhatsApp comercial</li>
+    <li>Bairro de atuação</li>
+    <li>Conteúdo das promoções publicadas (texto e imagens)</li>
+    <li>Data, horário e histórico de publicações</li>
+  </ul>
+
+  <h2>2. Como usamos seus dados</h2>
+  <ul>
+    <li>Enviar promoções e ofertas via WhatsApp para consumidores cadastrados</li>
+    <li>Gerenciar o acesso e a autenticação de lojistas na plataforma</li>
+    <li>Controlar o limite de publicações por lojista</li>
+    <li>Entrar em contato para suporte, avisos e informações sobre o serviço</li>
+    <li>Cumprir obrigações legais e regulatórias</li>
+  </ul>
+
+  <div class="alert-box">
+    <p>⚠️ Não vendemos, alugamos ou compartilhamos seus dados pessoais com terceiros para fins comerciais. Seus dados são usados exclusivamente para operação do serviço PromoApp.</p>
+  </div>
+
+  <h2>3. Armazenamento e segurança dos dados</h2>
+  <p>Os dados coletados são armazenados em plataformas com criptografia em trânsito (SSL/TLS) e em repouso. O acesso é restrito apenas às pessoas autorizadas pela PromoApp. Adotamos medidas técnicas e organizacionais adequadas para prevenir acessos não autorizados, perda, alteração ou divulgação indevida de dados.</p>
+  <p>Recomendamos que os usuários também adotem boas práticas de segurança, como não compartilhar dados de cadastro com terceiros.</p>
+
+  <h2>4. Retenção dos dados</h2>
+  <p>Os dados são mantidos enquanto o usuário permanecer ativo na plataforma. Após o cancelamento ou descadastro, os dados poderão ser retidos por até <strong>5 anos</strong> para fins de cumprimento de obrigações legais, conforme exigido pela legislação brasileira.</p>
+
+  <h2>5. Seus direitos como titular dos dados</h2>
+  <p>Conforme a LGPD, você tem direito a:</p>
+  <ul>
+    <li>Confirmar a existência de tratamento dos seus dados</li>
+    <li>Acessar seus dados pessoais armazenados</li>
+    <li>Corrigir dados incompletos, inexatos ou desatualizados</li>
+    <li>Solicitar a exclusão dos seus dados (direito ao esquecimento)</li>
+    <li>Revogar o consentimento a qualquer momento</li>
+    <li>Portabilidade dos dados a outro fornecedor de serviço</li>
+  </ul>
+  <p>Para exercer qualquer desses direitos, entre em contato: <a href="mailto:contato@promoapp.com.br" style="color:#FF6A00">contato@promoapp.com.br</a></p>
+
+  <h2>6. Cookies e tecnologias de rastreamento</h2>
+  <p>O site da PromoApp pode utilizar cookies essenciais para funcionamento das páginas. Não utilizamos cookies de rastreamento para fins publicitários de terceiros.</p>
+
+  <h2>7. Alterações nesta política</h2>
+  <p>Esta Política pode ser atualizada periodicamente. Notificaremos os usuários sobre mudanças relevantes via WhatsApp ou e-mail. A continuidade do uso dos serviços após a atualização implica concordância com os novos termos.</p>
+
+  <div class="contact-box">
+    <p><strong>Encarregado de Dados (DPO)</strong></p>
+    <p>PromoApp · CNPJ 21.824.467/0001-26</p>
+    <p>📧 <a href="mailto:contato@promoapp.com.br">contato@promoapp.com.br</a></p>
+    <p>📍 Ed Alvorada — R. 137, 556 — 1º Andar, St. Marista, Goiânia - GO</p>
+    <p>📲 <a href="https://wa.me/5562993223895">(62) 99322-3895</a></p>
+  </div>
+</div>
+
+<footer-doc>© 2026 PromoApp · Todos os direitos reservados · CNPJ 21.824.467/0001-26</footer-doc>
+
+</body>
+</html>
